@@ -8,11 +8,29 @@ routes.get('/', (request, response) => {
   return response.json({ message: '😊 Welcome!' });
 });
 
-routes.get('/create-pdf', async (request, response) => {
-  const pdf = new PdfController();
-  const message = await pdf.execute();
+routes.post('/create-pdf', async (request, response) => {
+  try {
+    const {
+      sender,
+      clientName,
+      shortDescription,
+      proposalDate,
+      services,
+    } = request.body;
 
-  return response.json(message);
+    const pdf = new PdfController();
+    const message = await pdf.execute({
+      sender,
+      clientName,
+      shortDescription,
+      proposalDate,
+      services,
+    });
+
+    return response.json(message);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
 });
 
 export default routes;

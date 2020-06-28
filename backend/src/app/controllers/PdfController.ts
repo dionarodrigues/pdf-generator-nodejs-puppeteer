@@ -2,6 +2,15 @@ import puppeteer from 'puppeteer';
 import hbs from 'handlebars';
 import path from 'path';
 import fs from 'fs-extra';
+import { v4 as uuidv4 } from 'uuid';
+
+interface Request {
+  sender: string;
+  clientName: string;
+  shortDescription: string;
+  proposalDate: string;
+  services: string;
+}
 
 const compile = async function (templateName: string, data: any): Promise<any> {
   const filePath = path.join(
@@ -16,20 +25,37 @@ const compile = async function (templateName: string, data: any): Promise<any> {
 };
 
 class PdfController {
-  public async execute(): Promise<{ message: string }> {
+  public async execute({
+    sender,
+    clientName,
+    shortDescription,
+    proposalDate,
+    services,
+  }: Request): Promise<{ message: string }> {
     try {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
 
       const content = await compile('short-list', {
-        first: 'Diogo',
-        last: 'Rodrigues',
+        sender,
+        clientName,
+        shortDescription,
+        proposalDate,
+        services,
       });
+
+      const filePath = path.join(process.cwd(), 'pdf');
+      const fileName = sender
+        .toLocaleLowerCase()
+        .trim()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s/g, '-');
 
       await page.setContent(content);
       await page.emulateMediaType('screen');
       await page.pdf({
-        path: 'mypdf.pdf',
+        path: `${filePath}/${fileName}-${uuidv4()}.pdf`,
         format: 'A4',
         printBackground: true,
       });

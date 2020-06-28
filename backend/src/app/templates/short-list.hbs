@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>PDF</title>
+
+  <style>
+    body {
+      padding: 50px;
+    }
+  </style>
 </head>
 <body>
-  <p>{{first}} {{last}}</p>
+  <div class="jumbotron">
+    <h1 class="display-4">Proposal</h1>
+    <p class="lead"><strong>From:</strong> {{sender}}</p>
+    <p class="lead"><strong>To:</strong> {{clientName}}</p>
+    <p class="lead"><strong>Date:</strong> {{proposalDate}}</p>
+    <hr class="my-4">
+    <p>{{shortDescription}}</p>
+  </div>
+
+  <br />
+
+  <h2>Services</h2>
+  <div>{{services}}</div>
 </body>
 </html>
