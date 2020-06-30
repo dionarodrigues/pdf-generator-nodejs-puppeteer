@@ -15,7 +15,8 @@ routes.post('/create-pdf', async (request, response) => {
       clientName,
       shortDescription,
       proposalDate,
-      services,
+      fullDescription,
+      servicesList
     } = request.body;
 
     const pdf = new PdfController();
@@ -24,7 +25,8 @@ routes.post('/create-pdf', async (request, response) => {
       clientName,
       shortDescription,
       proposalDate,
-      services,
+      fullDescription,
+      servicesList
     });
 
     return response.json(message);

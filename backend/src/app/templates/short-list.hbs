@@ -22,9 +22,31 @@
     <p>{{shortDescription}}</p>
   </div>
 
-  <br />
+  <hr />
 
-  <h2>Services</h2>
-  <div>{{services}}</div>
+  <h2>Full Description</h2>
+  <div>{{{fullDescription}}}</div>
+
+  <hr />
+
+  <h2>Services List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Service/Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unity Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each servicesList as |service|}}
+        <tr>
+          <td>{{{service.service}}}</td>
+          <td>{{{service.quantity}}}</td>
+          <td>{{{service.price}}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </div>
 </body>
 </html>

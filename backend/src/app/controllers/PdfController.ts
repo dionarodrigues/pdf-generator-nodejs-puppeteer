@@ -9,7 +9,8 @@ interface Request {
   clientName: string;
   shortDescription: string;
   proposalDate: string;
-  services: string;
+  fullDescription: string;
+  servicesList: any;
 }
 
 const compile = async function (templateName: string, data: any): Promise<any> {
@@ -30,7 +31,8 @@ class PdfController {
     clientName,
     shortDescription,
     proposalDate,
-    services,
+    fullDescription,
+    servicesList
   }: Request): Promise<{ message: string }> {
     try {
       const browser = await puppeteer.launch();
@@ -41,7 +43,8 @@ class PdfController {
         clientName,
         shortDescription,
         proposalDate,
-        services,
+        fullDescription,
+        servicesList
       });
 
       const filePath = path.join(process.cwd(), 'pdf');

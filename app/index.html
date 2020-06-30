@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
   <title>PDF generator</title>
 </head>
 <body>
@@ -13,32 +14,79 @@
 
     <form class="form">
       <div class="form-group">
-        <label for="sender">To</label>
-        <input type="text" class="form-control" id="sender">
+        <label for="sender">From</label>
+        <input type="text" class="form-control" id="sender" />
       </div>
       <div class="form-group">
         <label for="clientName">Cliente name</label>
-        <input type="text" class="form-control" id="clientName">
+        <input type="text" class="form-control" id="clientName" />
       </div>
       <div class="form-group">
         <label for="shortDescription">Short Description of this proposal</label>
-        <input type="text" class="form-control" id="shortDescription">
+        <input type="text" class="form-control" id="shortDescription" />
       </div>
       <div class="form-group">
         <label for="proposalDate">Proposal Date</label>
-        <input type="text" class="form-control" id="proposalDate">
+        <input type="text" class="form-control" id="proposalDate" />
       </div>
       <div class="form-group">
-        <label for="services">Services Description</label>
-        <textarea class="form-control" id="services" rows="5"></textarea>
+        <label for="services">Full Description</label>
+        <input type="hidden" class="form-control" id="services" />
+        <div id="editor" style="min-height: 150px"></div>
+      </div> 
+
+      <hr />
+
+      <h2 class="h5">Services/Products</h2>
+
+      <div class="form-services">
+        <div class="form-row form-services__item">
+          <div class="form-group col-md-6">
+            <label for="serviceProduct" data-name="service">Service/Product</label>
+            <input type="text" class="form-control" id="serviceProduct">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="quantity" data-name="quantity">Quantity</label>
+            <input type="text" class="form-control" id="quantity">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="unitPrice" data-name="price">Unity Price</label>
+            <input type="text" class="form-control" id="unitPrice">
+          </div>
+        </div>        
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-secondary btn-new-service">Add Service/Product</button>
+
+      <hr />
+
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">Create PDF</button>
+      </div>
     </form>
   </div>
 
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+  
+  <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+  <script>
+    var toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['clean']
+    ];
+
+    var editor = new Quill('#editor', {
+      modules: { toolbar: toolbarOptions },
+      placeholder: 'Compose an epic...',
+      theme: 'snow'
+    });
+  </script>
+
   <script src="scripts.js"></script>
   
 </body>
