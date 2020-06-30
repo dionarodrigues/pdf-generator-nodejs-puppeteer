@@ -14,6 +14,9 @@ function getPdf(
     fullDescription,
     servicesList
   ) {
+
+  isLoading(true);
+
   fetch('http://localhost:3333/create-pdf', {
     method: 'POST',
     headers: {
@@ -30,12 +33,28 @@ function getPdf(
     })
   })
   .then(res => res.json())
-  .then(data => console.log(data))
+  .then(data => {
+    console.log(data);
+    isLoading(false);
+  })
+}
+
+function isLoading(isLoading) {
+  const $buttonSubmit = document.querySelector('.form button[type="submit"]');
+
+  if(isLoading) {
+    const loadingContent = '<div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div> Loading...';
+    $buttonSubmit.setAttribute('disabled', true);
+    $buttonSubmit.innerHTML = loadingContent;
+    return
+  }  
+  
+  $buttonSubmit.removeAttribute('disabled'); 
+  $buttonSubmit.innerHTML = $buttonSubmit.dataset.label; 
 }
 
 function handleSubmit(e) {
-  e.preventDefault();
-
+  e.preventDefault(); 
   let sender = document.getElementById('sender').value;
   let clientName = document.getElementById('clientName').value;
   let proposalDate = document.getElementById('proposalDate').value;
