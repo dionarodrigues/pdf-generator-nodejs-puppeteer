@@ -38,12 +38,4 @@ routes.post('/create-pdf', async (request, response) => {
   }
 });
 
-// routes.get('/download', (request, response) => {
-//   const pdf = new PdfController();
-//   const file = pdf.get();
-
-//   response.type('pdf')
-//   response.download(file);
-// });
-
 export default routes;
