@@ -13,6 +13,8 @@ interface Request {
   servicesList: any;
 }
 
+let file = '';
+
 const compile = async function (templateName: string, data: any): Promise<any> {
   const filePath = path.join(
     process.cwd(),
@@ -33,7 +35,7 @@ class PdfController {
     proposalDate,
     fullDescription,
     servicesList
-  }: Request): Promise<{ message: string }> {
+  }: Request): Promise<any> {
     try {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
@@ -48,30 +50,31 @@ class PdfController {
       });
 
       const filePath = path.join(process.cwd(), 'pdf');
-      const fileName = sender
+      const fileName = clientName
         .toLocaleLowerCase()
         .trim()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .replace(/\s/g, '-');
+      const pdfFile = `${filePath}/${fileName}-${uuidv4()}.pdf`;
+      file = pdfFile;
 
       await page.setContent(content);
       await page.emulateMediaType('screen');
       await page.pdf({
-        path: `${filePath}/${fileName}-${uuidv4()}.pdf`,
+        path: pdfFile,
         format: 'A4',
         printBackground: true,
       });
 
       await browser.close();
-      // process.exit();
     } catch (e) {
       console.log('Error', e);
     }
+  }
 
-    return {
-      message: 'PDF!',
-    };
+  public get() {
+    return file;
   }
 }
 

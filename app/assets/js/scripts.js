@@ -6,7 +6,7 @@ const $formServicesItem = document.querySelector('.form-services__item');
 const $btnAddService = document.querySelector('.btn-new-service');
 const $btnRemoveService = document.querySelector('.btn-remove-service');
 
-function getPdf(
+function createPdf(
     sender,
     clientName,
     shortDescription,
@@ -32,10 +32,17 @@ function getPdf(
       servicesList: servicesList,
     })
   })
-  .then(res => res.json())
+  .then(res => res.blob())
   .then(data => {
-    console.log(data);
-    isLoading(false);
+    const date = new Date();
+    const pdfName = clientName
+      .toLocaleLowerCase()
+      .trim()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s/g, '-');
+      isLoading(false);
+    return download(data, pdfName + '-' + date.getDate() + date.getMonth() + date.getFullYear(), 'text/plain' );
   })
 }
 
@@ -76,7 +83,7 @@ function handleSubmit(e) {
     servicesList.push(data);
   });
 
-  getPdf(
+  createPdf(
     sender,
     clientName,
     proposalDate,

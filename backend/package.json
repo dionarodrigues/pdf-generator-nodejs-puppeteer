@@ -28,6 +28,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "@types/fs-extra": "^9.0.1",
     "@types/puppeteer": "^3.0.1",
     "@types/uuid": "^8.0.0",

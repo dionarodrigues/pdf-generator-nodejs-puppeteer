@@ -20,7 +20,7 @@ routes.post('/create-pdf', async (request, response) => {
     } = request.body;
 
     const pdf = new PdfController();
-    const message = await pdf.execute({
+    await pdf.execute({
       sender,
       clientName,
       shortDescription,
@@ -29,10 +29,21 @@ routes.post('/create-pdf', async (request, response) => {
       servicesList
     });
 
-    return response.json(message);
+    const file = pdf.get();
+
+    response.type('pdf')
+    return response.download(file);
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }
 });
+
+// routes.get('/download', (request, response) => {
+//   const pdf = new PdfController();
+//   const file = pdf.get();
+
+//   response.type('pdf')
+//   response.download(file);
+// });
 
 export default routes;
