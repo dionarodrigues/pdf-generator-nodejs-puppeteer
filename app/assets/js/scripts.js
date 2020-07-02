@@ -40,7 +40,8 @@ function createPdf(
       .trim()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s/g, '-');
+      .replace(/\s/g, '-')
+      .replace(/\/|\(|\)/g, '');
       isLoading(false);
     return download(data, pdfName + '-' + date.getDate() + date.getMonth() + date.getFullYear(), 'text/plain' );
   })

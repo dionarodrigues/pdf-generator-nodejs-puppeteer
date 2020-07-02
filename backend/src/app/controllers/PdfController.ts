@@ -13,6 +13,8 @@ interface Request {
   servicesList: any;
 }
 
+let file = '';
+
 const compile = async function (templateName: string, data: any): Promise<any> {
   const filePath = path.join(
     process.cwd(),
@@ -53,8 +55,10 @@ class PdfController {
         .trim()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
-        .replace(/\s/g, '-');
+        .replace(/\s/g, '-')
+        .replace(/\/|\(|\)/g, '');
       const pdfFile = `${filePath}/${fileName}-${uuidv4()}.pdf`;
+      file = pdfFile;
 
       await page.setContent(content);
       await page.emulateMediaType('screen');
@@ -69,6 +73,11 @@ class PdfController {
       console.log('Error', e);
     }
   }
+
+  public get() {
+    return file;
+  }
+
 }
 
 export default PdfController;
