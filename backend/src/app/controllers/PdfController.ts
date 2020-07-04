@@ -11,6 +11,7 @@ interface Request {
   proposalDate: string;
   fullDescription: string;
   servicesList: any;
+  image: any;
 }
 
 let file = '';
@@ -34,7 +35,8 @@ class PdfController {
     shortDescription,
     proposalDate,
     fullDescription,
-    servicesList
+    servicesList,
+    image
   }: Request): Promise<any> {
     try {
       const browser = await puppeteer.launch();
@@ -46,10 +48,11 @@ class PdfController {
         shortDescription,
         proposalDate,
         fullDescription,
-        servicesList
+        servicesList,
+        image
       });
 
-      const filePath = path.join(process.cwd(), 'pdf');
+      const filePath = path.join(process.cwd(), 'public', 'pdf');
       const fileName = clientName
         .toLocaleLowerCase()
         .trim()

@@ -12,17 +12,18 @@ function createPdf(
     shortDescription,
     proposalDate,
     fullDescription,
-    servicesList
+    servicesList,
+    image
   ) {
 
   isLoading(true);
 
   fetch('http://localhost:3333/create-pdf', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
+    headers: new Headers({
+      'Accept': '*/*',
       'Content-type': 'application/json'
-    },
+    }),
     body: JSON.stringify({
       sender: sender,
       clientName: clientName,
@@ -30,6 +31,7 @@ function createPdf(
       proposalDate: proposalDate,
       fullDescription: fullDescription,
       servicesList: servicesList,
+      image: image
     })
   })
   .then(res => res.blob())
@@ -47,6 +49,17 @@ function createPdf(
   })
 }
 
+async function uploadImage($el) {
+  const formData = new FormData();
+  formData.append('logo', $el.files[0]);
+  return fetch('http://localhost:3333/upload', {
+    method: 'POST',
+    body: formData,
+  })
+  .then(response => response.json())
+  .then(data => data.path);
+}
+
 function isLoading(isLoading) {
   const $buttonSubmit = document.querySelector('.form button[type="submit"]');
 
@@ -61,14 +74,16 @@ function isLoading(isLoading) {
   $buttonSubmit.innerHTML = $buttonSubmit.dataset.label; 
 }
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault(); 
   let sender = document.getElementById('sender').value;
   let clientName = document.getElementById('clientName').value;
   let proposalDate = document.getElementById('proposalDate').value;
   let shortDescription = document.getElementById('shortDescription').value;
-  let fullDescription = editor.root.innerHTML;
+  let fullDescription = editor.root.innerHTML;  
   let servicesList = [];
+  let image = await uploadImage(document.getElementById('logo'));  
+  console.log('image', image)
 
   const $servicesListEl = document.querySelectorAll('.form-services__item');
   Array.from($servicesListEl).map(item => {
@@ -82,7 +97,7 @@ function handleSubmit(e) {
       }      
     });
     servicesList.push(data);
-  });
+  });  
 
   createPdf(
     sender,
@@ -90,7 +105,8 @@ function handleSubmit(e) {
     proposalDate,
     shortDescription,
     fullDescription,
-    servicesList
+    servicesList,
+    image
   );
 }
 
