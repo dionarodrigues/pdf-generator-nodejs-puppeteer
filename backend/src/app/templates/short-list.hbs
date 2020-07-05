@@ -41,8 +41,13 @@
       page-break-before:always;
     }
 
-    .section-content .container div {
+    .section-content {
       page-break-inside: avoid;
+    }
+
+    .section-content + hr {
+      margin: 0 auto;
+      max-width: 500px;
     }
 
     .content br {
@@ -77,22 +82,26 @@
 
   <div class="section section-content">
     <div class="container">
-
       <div class="content">
-        <p>Proposal Number: {{proposalNumber}} - {{proposalDate}} - {{senderLocation}}</p> <br />
+        <p style="margin-bottom: 30px">Proposal Number: {{proposalNumber}} - {{proposalDate}} - {{senderLocation}}</p>
         {{{proposalIntroduction}}}
       </div>
+    </div>
+  </div>
 
-      <hr />
+  <hr />
 
-      <div>
-        <h2 class="title is-4 has-text-primary">Scope</h2>
-        <div class="content">{{{projectScope}}}</div>
-      </div>
+  <div class="section section-content">
+    <div class="container">
+      <h2 class="title is-4 has-text-primary">Scope</h2>
+      <div class="content">{{{projectScope}}}</div>
+    </div>
+  </div>
 
-      <hr />
+  <hr />
 
-      <div>
+  <div class="section section-content">
+    <div class="container">
         <h2 class="title is-4 has-text-primary">Services</h2>
         <table class="table">
           <thead>
@@ -112,17 +121,22 @@
             {{/each}}
           </tbody>
         </table>
-      </div>
+    </div>
+  </div>
 
-      <hr />
+  <hr />
 
-      <div>
-        <h2 class="title is-4 has-text-primary">Aditional Information</h2>
-        <div>{{{aditionalInformation}}}</div>
-      </div>
+  <div class="section section-content">
+    <div class="container">
+      <h2 class="title is-4 has-text-primary">Aditional Information</h2>
+      <div class="content">{{{aditionalInformation}}}</div>
+    </div>
+  </div>
 
-      <hr />
+  <hr />
 
+  <div class="section section-content">
+    <div class="container">
       <div class="section-signature">
         <img src={{senderSignature}} alt="" width="100" /> <br />
         <p class="title is-5">{{senderName}}</p>
@@ -132,7 +146,6 @@
           {{senderTel}}<br />
         </p>
       </div>
-
     </div>
   </div>
 </body>

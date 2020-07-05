@@ -3,7 +3,6 @@
   const $formServicesList = document.querySelector('.form-services');
   const $formServicesItem = document.querySelector('.form-services__item');
   const $btnAddService = document.querySelector('.btn-new-service');
-  const $btnRemoveService = document.querySelector('.btn-remove-service');
 
   const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
@@ -14,17 +13,17 @@
     ['clean']
   ];
 
-  const editorProposalIntroduction = new Quill('#editorProposalIntroduction', {
-    modules: { toolbar: toolbarOptions },
-    placeholder: 'Full Description...',
-    theme: 'snow'
-  });
+  function makeEditor(elId) {
+    return new Quill(elId, {
+      modules: { toolbar: toolbarOptions },
+      placeholder: 'Full Description...',
+      theme: 'snow'
+    })
+  }
 
-  const editorProjectScope = new Quill('#editorProjectScope', {
-    modules: { toolbar: toolbarOptions },
-    placeholder: 'Full Description...',
-    theme: 'snow'
-  });  
+  const editorProposalIntroduction = makeEditor('#editorProposalIntroduction');
+  const editorProjectScope = makeEditor('#editorProjectScope');
+  const editorAditionalInformation = makeEditor('#editorAditionalInformation');
 
   function createPdf(
     senderLogo,
@@ -137,9 +136,7 @@
     let proposalIntroduction = editorProposalIntroduction.root.innerHTML;
     let projectScope = editorProjectScope.root.innerHTML;
     let servicesList = [];
-    let aditionalInformation = document.getElementById('aditionalInformation').value;
-
-    console.log(projectScope)
+    let aditionalInformation = editorAditionalInformation.root.innerHTML;
 
     const $servicesListEl = document.querySelectorAll('.form-services__item');
     Array.from($servicesListEl).map(item => {

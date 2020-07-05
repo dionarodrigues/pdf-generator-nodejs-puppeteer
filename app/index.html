@@ -295,17 +295,13 @@
           </div>
           <div class="field-body">
             <div class="field">
-              <p class="control is-expanded has-icons-left">
-                <input class="input" type="text" placeholder="" id="aditionalInformation">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-align-left"></i>
-                </span>
-              </p>
+              <input type="hidden" class="form-control" id="aditionalInformation" />
+              <div id="editorAditionalInformation" style="min-height: 150px"></div>              
             </div>
           </div>
         </div>
 
-        <div class="field is-grouped is-grouped-right">
+        <div class="field is-grouped is-grouped-right" style="margin-top: 80px">
           <button type="submit" class="button is-primary" data-label="Create PDF">Create PDF</button>
         </div>
       </form>
