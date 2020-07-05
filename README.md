@@ -29,6 +29,8 @@ yarn install
 yarn dev:server
 ```
 
+It is important that you start the backend application before using the HTML form. When filling out the HTML form, the PDF will be downloaded automatically.
+
 ## Main files
 
 |  Name | Description |
