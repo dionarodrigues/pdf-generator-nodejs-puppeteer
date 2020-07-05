@@ -4,6 +4,8 @@
 
 Check the [PDF demo here](https://github.com/diogorodrigues/pdf-generator-nodejs-puppeteer/blob/master/demo/john-stone-2401872e-c906-41e7-99e3-965feadad3ed.pdf).
 
+<div style="text-align:center; width: 100%;"><img src="/demo/form-screenshot.PNG" width="900" alt="Animated Circle Text" style="max-width:100%;margin:0 auto;" /></div>
+
 ---
 
 __This project contains the following settings:__
