@@ -3,53 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
   <title>PDF</title>
 
   <style>
-    body {
-      padding: 50px;
+    .body-container {
+      padding: 0 30px;
+    }
+    .table {
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <div class="jumbotron">
-    <h1 class="display-4">Proposal</h1>
-    <p class="lead">
-      <img src={{image}} alt="" width="200" /> <br />
-      <strong>From:</strong> {{sender}}
-    </p>
-    <p class="lead"><strong>To:</strong> {{clientName}}</p>
-    <p class="lead"><strong>Date:</strong> {{proposalDate}}</p>
-    <hr class="my-4">
-    <p>{{shortDescription}}</p>
-  </div>
+  <section class="hero is-dark is-bold">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <img src={{image}} alt="" width="200" /> <br />
+        <p class="title is-2">
+          {{sender}}
+        </p>
+        <p>{{slogan}}</p>
+      </div>
+    </div>
+  </section>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Proposal to  {{clientName}}
+        </h1>
+        <h2 class="subtitle">
+          {{shortDescription}}
+        </h2>
+        <p><strong>Date:</strong> {{proposalDate}} / <strong>Proposal Number:</strong> {{proposalNumber}}</p>
+      </div>
+    </div>
+  </section>
 
   <hr />
 
-  <h2>Full Description</h2>
-  <div>{{{fullDescription}}}</div>
+  <div class="container body-container">
+    <h2 class="title is-4">Scope</h2>
+    <div>{{{fullDescription}}}</div>
 
-  <hr />
+    <hr />
 
-  <h2>Services List</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Service/Product</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Unity Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each servicesList as |service|}}
+    <h2 class="title is-4">Services</h2>
+    <table class="table">
+      <thead>
         <tr>
-          <td>{{{service.service}}}</td>
-          <td>{{{service.quantity}}}</td>
-          <td>{{{service.price}}}</td>
+          <th>Service/Product</th>
+          <th>Quantity</th>
+          <th>Unity Price</th>
         </tr>
-      {{/each}}
-    </tbody>
+      </thead>
+      <tbody>
+        {{#each servicesList as |service|}}
+          <tr>
+            <td>{{{service.service}}}</td>
+            <td>{{{service.quantity}}}</td>
+            <td>{{{service.price}}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </div>
   </div>
 </body>
 </html>

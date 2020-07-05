@@ -16,7 +16,7 @@
 
   var editor = new Quill('#editor', {
     modules: { toolbar: toolbarOptions },
-    placeholder: 'Compose an epic...',
+    placeholder: 'Full Description...',
     theme: 'snow'
   });
 
@@ -115,8 +115,8 @@
     createPdf(
       sender,
       clientName,
-      proposalDate,
       shortDescription,
+      proposalDate,
       fullDescription,
       servicesList,
       image
