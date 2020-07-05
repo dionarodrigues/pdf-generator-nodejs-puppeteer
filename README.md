@@ -1,15 +1,17 @@
-# Starter for Node.js applications written in TypeScript
+# PDF Generator for business proposals using Node.JS with Puppeteer and HTML
 
-👌 A basic Starter for Node + TypeScript development with setup for [VSCode](https://code.visualstudio.com/) debugging, Jest, Eslint and more.
+👌 A complete application to create PDF files from a HTML form using Node.JS with with Typescript. 
 
 ---
 
 __This project contains the following settings:__
+- PDF generator using [Puppeteer](https://www.npmjs.com/package/puppeteer)
+- Images Uploading using [Multer](https://www.npmjs.com/package/multer)
+- Templating engine with [Handlebars](https://handlebarsjs.com/)
+- CSS framework using [Bulma](https://bulma.io/)
 - Consistent coding styles using [EditorConfig](https://editorconfig.org/)
 - Linting via [eslint](https://eslint.org/), [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) and [prettier](https://prettier.io/)
-- Testing via [Jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekhar/ts-jest)
 - Dev Build/Compile/Run with [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
-- Build via tsc to a /dist folder
 - [VSCode debugging](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
 
 ## 🚀 Getting Started
@@ -22,6 +24,7 @@ $ git clone https://github.com/diogorodrigues/node-typescript-starter.git your-p
 cd your-project-name
 
 rm -rf .git
+cd backend
 yarn install
 yarn dev:server
 ```
@@ -30,17 +33,17 @@ yarn dev:server
 
 |  Name | Description |
 | :------------ | :------------ |
-| src | Contains your source code that will be compiled to the dist dir |
-| dist | Contains the distributable (or output) from your TypeScript build. This is the code you ship |
-| src/\_\_tests\_\_ | Contains your tests. | 
-| src/routes | Contains your routes. | 
-| src/server | Entry point to your express app |
-| .editorconfig | EditorConfig settings |
-| .eslintrc.json | Eslint Settings | 
-| jest.config.js | Jest settings | 
-| prettier.config.js | Prettier settings | 
-| tsconfig.json | Typescript settings | 
-| .vscode | Contains VS Code specific settings |
+| app | Contains front-end static files: HTML, CSS and JS for the form |
+| app/index.html | HTML form | 
+| app/assets/js/scripts.js | Scripts to handle the form and fetch the API to generate PDFs | 
+| backend | Contains the Node.JS application to generate PDFs from HTML form |
+| backend/public | To storage images and PDFs from the HTML form |
+| backend/src | Contains your source code |
+| backend/src/app/templates | Contains the hbs templates for PDFs | 
+| backend/src/app/controllers | Contains the controllers to handle Images and PDFs | 
+| backend/src/app/config | Contains some configs for multer |
+| backend/src/routes | Contains the routes | 
+| backend/src/server.ts | Entry point to your express app |
 
 ## Eslint + VS Code Settings
 
