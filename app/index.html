@@ -3,101 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"> 
   <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
   <link href="assets/css/styles.css" rel="stylesheet">
   <title>PDF generator</title>
 </head>
 <body>
 
-  <div class="container">
-    <h1>PDF Generator</h1>
-
-    <form class="form">
-      <div class="form-group">
-        <label for="logo">Logo</label>
-        <input type="file" accept="image/*" name="logo" id="logo" />
-      </div>      
-      <div class="form-group">
-        <label for="sender">From</label>
-        <input type="text" class="form-control" id="sender" />
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          PDF Generator
+        </h1>
+        <h2 class="subtitle">
+          A simple way to create business proposals
+        </h2>
       </div>
-      <div class="form-group">
-        <label for="clientName">Cliente name</label>
-        <input type="text" class="form-control" id="clientName" />
-      </div>
-      <div class="form-group">
-        <label for="shortDescription">Short Description of this proposal</label>
-        <input type="text" class="form-control" id="shortDescription" />
-      </div>
-      <div class="form-group">
-        <label for="proposalDate">Proposal Date</label>
-        <input type="text" class="form-control" id="proposalDate" />
-      </div>
-      <div class="form-group">
-        <label for="services">Full Description</label>
-        <input type="hidden" class="form-control" id="services" />
-        <div id="editor" style="min-height: 150px"></div>
-      </div> 
+    </div>
+  </section>
 
-      <hr />
+  <div class="container"> 
+    <div class="section">
 
-      <h2 class="h5">Services/Products</h2>
+      <form class="form">
 
-      <div class="form-services">
-        <div class="form-row form-services__item">
-          <div class="form-group col-md-6">
-            <label for="serviceProduct" data-name="service">Service/Product</label>
-            <input type="text" class="form-control" id="serviceProduct">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="proposalDate">Proposal Date</label>
           </div>
-          <div class="form-group col-md-2">
-            <label for="quantity" data-name="quantity">Quantity</label>
-            <input type="text" class="form-control" id="quantity">
+          <div class="field-body">
+            <div class="field" style="max-width: 400px">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="" id="proposalDate">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-calendar-alt"></i>
+                </span>
+              </p>
+            </div>
           </div>
-          <div class="form-group col-md-2">
-            <label for="unitPrice" data-name="price">Unity Price</label>
-            <input type="text" class="form-control" id="unitPrice">
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="sender">From</label>
           </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Name" id="sender">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="file">
+              <label class="file-label">
+                <input class="file-input" type="file" accept="image/*" name="logo" id="logo">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Logo…
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="clientName">To</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Client Name" id="clientName">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="shortDescription">Short Description</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="" id="shortDescription">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-align-left"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="services">Full Description</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <input type="hidden" class="form-control" id="services" />
+              <div id="editor" style="min-height: 150px"></div>
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin-top: 80px" />
+
+        <h1 class="title is-4">Services/Products</h1>
+
+        <div class="field form-services">
+          <div class="field is-horizontal form-services__item">
+            <div class="field-label is-normal">
+              <label class="label" for="services">Item</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <input type="text" data-name="service" class="input" id="serviceProduct" placeholder="Description">
+              </div>
+              <div class="field">
+                <input type="text" data-name="quantity" class="input" id="quantity" placeholder="Quantity">
+              </div>
+              <div class="field">
+                <input type="text" data-name="price" class="input" id="unitPrice" placeholder="Unity Price">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-right">
+          <button type="button" class="button is-link is-light btn-new-service">Add Service/Product</button>
         </div>        
-      </div>
-      <button type="button" class="btn btn-secondary btn-new-service">Add Service/Product</button>
 
-      <hr />
+        <hr />
 
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary" data-label="Create PDF">Create PDF</button>
-      </div>
-    </form>
+        <div class="field is-grouped is-grouped-right">
+          <button type="submit" class="button is-primary" data-label="Create PDF">Create PDF</button>
+        </div>
+      </form>
+
+    </div>
   </div>
 
-  <!-- <form class="form-upload">
-    <input type="file" accept="image/*" name="logo" id="logo" />
-    <button type="submit" class="btn btn-primary" data-label="Upload Logo">upload Logo</button>
-  </form> -->
-
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
   <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-  <script>
-    var toolbarOptions = [
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'size': ['small', false, 'large', 'huge'] }],
-      [{ 'color': [] }, { 'background': [] }],
-      [{ 'align': [] }],
-      ['clean']
-    ];
-
-    var editor = new Quill('#editor', {
-      modules: { toolbar: toolbarOptions },
-      placeholder: 'Compose an epic...',
-      theme: 'snow'
-    });
-  </script>
-
   <script src="assets/js/scripts.js"></script>
   
 </body>
