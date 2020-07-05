@@ -1,4 +1,4 @@
 node_modules
 
-./public/pdf/*
-./public/uploads/images/*
+./public/pdf/**
+./public/uploads/images/**
