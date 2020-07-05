@@ -5,13 +5,27 @@ import fs from 'fs-extra';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Request {
-  sender: string;
+  senderLogo: string;
+  senderSignature: string;
+  senderName: string;
+  senderCompany: string;
+  senderSlogan: string;
+  senderTel: string;
+  senderSite: string;
+  senderEmail: string;
+  senderLocation: string;
+
   clientName: string;
-  shortDescription: string;
+  clientCompany: string;
+
+  proposalShortDescription: string;
   proposalDate: string;
-  fullDescription: string;
+  proposalNumber: string;
+
+  proposalIntroduction: string;
+  projectScope: string;
   servicesList: any;
-  image: any;
+  aditionalInformation: string;
 }
 
 let file = '';
@@ -30,26 +44,48 @@ const compile = async function (templateName: string, data: any): Promise<any> {
 
 class PdfController {
   public async execute({
-    sender,
-    clientName,
-    shortDescription,
-    proposalDate,
-    fullDescription,
-    servicesList,
-    image
+  senderLogo,
+  senderSignature,
+  senderName,
+  senderCompany,
+  senderSlogan,
+  senderTel,
+  senderSite,
+  senderEmail,
+  senderLocation,
+  clientName,
+  clientCompany,
+  proposalShortDescription,
+  proposalDate,
+  proposalNumber,
+  proposalIntroduction,
+  projectScope,
+  servicesList,
+  aditionalInformation,
   }: Request): Promise<any> {
     try {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
 
       const content = await compile('short-list', {
-        sender,
+        senderLogo,
+        senderSignature,
+        senderName,
+        senderCompany,
+        senderSlogan,
+        senderTel,
+        senderSite,
+        senderEmail,
+        senderLocation,
         clientName,
-        shortDescription,
+        clientCompany,
+        proposalShortDescription,
         proposalDate,
-        fullDescription,
+        proposalNumber,
+        proposalIntroduction,
+        projectScope,
         servicesList,
-        image
+        aditionalInformation,
       });
 
       const filePath = path.join(process.cwd(), 'public', 'pdf');

@@ -16,24 +16,46 @@ routes.get('/', (request, response) => {
 routes.post('/create-pdf', async (request, response) => {
   try {
     const {
-      sender,
+      senderLogo,
+      senderSignature,
+      senderName,
+      senderCompany,
+      senderSlogan,
+      senderTel,
+      senderSite,
+      senderEmail,
+      senderLocation,
       clientName,
-      shortDescription,
+      clientCompany,
+      proposalShortDescription,
       proposalDate,
-      fullDescription,
+      proposalNumber,
+      proposalIntroduction,
+      projectScope,
       servicesList,
-      image
+      aditionalInformation,
     } = request.body;
 
     const pdf = new PdfController();
     await pdf.execute({
-      sender,
+      senderLogo,
+      senderSignature,
+      senderName,
+      senderCompany,
+      senderSlogan,
+      senderTel,
+      senderSite,
+      senderEmail,
+      senderLocation,
       clientName,
-      shortDescription,
+      clientCompany,
+      proposalShortDescription,
       proposalDate,
-      fullDescription,
+      proposalNumber,
+      proposalIntroduction,
+      projectScope,
       servicesList,
-      image
+      aditionalInformation,
     });
 
     const file = await pdf.get();

@@ -5,7 +5,7 @@
   const $btnAddService = document.querySelector('.btn-new-service');
   const $btnRemoveService = document.querySelector('.btn-remove-service');
 
-  var toolbarOptions = [
+  const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
     [{ 'size': ['small', false, 'large', 'huge'] }],
@@ -14,21 +14,38 @@
     ['clean']
   ];
 
-  var editor = new Quill('#editor', {
+  const editorProposalIntroduction = new Quill('#editorProposalIntroduction', {
     modules: { toolbar: toolbarOptions },
     placeholder: 'Full Description...',
     theme: 'snow'
   });
 
+  const editorProjectScope = new Quill('#editorProjectScope', {
+    modules: { toolbar: toolbarOptions },
+    placeholder: 'Full Description...',
+    theme: 'snow'
+  });  
+
   function createPdf(
-      sender,
-      clientName,
-      shortDescription,
-      proposalDate,
-      fullDescription,
-      servicesList,
-      image
-    ) {
+    senderLogo,
+    senderSignature,
+    senderName,
+    senderCompany,
+    senderSlogan,
+    senderTel,
+    senderSite,
+    senderEmail,
+    senderLocation,
+    clientName,
+    clientCompany,
+    proposalShortDescription,
+    proposalDate,
+    proposalNumber,
+    proposalIntroduction,
+    projectScope,
+    servicesList,
+    aditionalInformation,
+  ){
 
     isLoading(true);
 
@@ -39,13 +56,24 @@
         'Content-type': 'application/json'
       }),
       body: JSON.stringify({
-        sender: sender,
-        clientName: clientName,
-        shortDescription: shortDescription,
-        proposalDate: proposalDate,
-        fullDescription: fullDescription,
-        servicesList: servicesList,
-        image: image
+        senderLogo: senderLogo || ' ',
+        senderSignature: senderSignature || ' ',
+        senderName: senderName || ' ',
+        senderCompany: senderCompany || ' ',
+        senderSlogan: senderSlogan || ' ',
+        senderTel: senderTel || ' ',
+        senderSite: senderSite || ' ',
+        senderEmail: senderEmail || ' ',
+        senderLocation: senderLocation || ' ',
+        clientName: clientName || ' ',
+        clientCompany: clientCompany || ' ',
+        proposalShortDescription: proposalShortDescription || ' ',
+        proposalDate: proposalDate || ' ',
+        proposalNumber: proposalNumber || ' ',
+        proposalIntroduction: proposalIntroduction || ' ',
+        projectScope: projectScope || ' ',
+        servicesList: servicesList || ' ',
+        aditionalInformation: aditionalInformation || ' ',
       })
     })
     .then(res => res.blob())
@@ -91,13 +119,27 @@
 
   async function handleSubmit(e) {
     e.preventDefault(); 
-    let sender = document.getElementById('sender').value;
+
+    let senderLogo = await uploadImage(document.getElementById('senderLogo'));
+    let senderSignature = await uploadImage(document.getElementById('senderSignature'));
+    let senderName = document.getElementById('senderName').value;
+    let senderCompany = document.getElementById('senderCompany').value;
+    let senderSlogan = document.getElementById('senderSlogan').value;
+    let senderTel = document.getElementById('senderTel').value;
+    let senderSite = document.getElementById('senderSite').value;
+    let senderEmail = document.getElementById('senderEmail').value;
+    let senderLocation = document.getElementById('senderLocation').value;
     let clientName = document.getElementById('clientName').value;
+    let clientCompany = document.getElementById('clientCompany').value;
+    let proposalShortDescription = document.getElementById('proposalShortDescription').value;
     let proposalDate = document.getElementById('proposalDate').value;
-    let shortDescription = document.getElementById('shortDescription').value;
-    let fullDescription = editor.root.innerHTML;  
+    let proposalNumber = document.getElementById('proposalNumber').value;
+    let proposalIntroduction = editorProposalIntroduction.root.innerHTML;
+    let projectScope = editorProjectScope.root.innerHTML;
     let servicesList = [];
-    let image = await uploadImage(document.getElementById('logo'));
+    let aditionalInformation = document.getElementById('aditionalInformation').value;
+
+    console.log(projectScope)
 
     const $servicesListEl = document.querySelectorAll('.form-services__item');
     Array.from($servicesListEl).map(item => {
@@ -113,13 +155,24 @@
     });  
 
     createPdf(
-      sender,
+      senderLogo,
+      senderSignature,
+      senderName,
+      senderCompany,
+      senderSlogan,
+      senderTel,
+      senderSite,
+      senderEmail,
+      senderLocation,
       clientName,
-      shortDescription,
+      clientCompany,
+      proposalShortDescription,
       proposalDate,
-      fullDescription,
+      proposalNumber,
+      proposalIntroduction,
+      projectScope,
       servicesList,
-      image
+      aditionalInformation,
     );
   }
 

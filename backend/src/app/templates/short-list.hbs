@@ -7,66 +7,132 @@
   <title>PDF</title>
 
   <style>
-    .body-container {
-      padding: 0 30px;
+    .section-cover {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #1d1c21;
+      color: #dfdfdf;
     }
+
+    .section-cover * {
+      color: #dfdfdf;
+    }
+
+    .section-cover hr {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #2e333e;
+    }
+
+    .section-cover .title {
+      margin: 15px 0 30px;
+    }
+
     .table {
       width: 100%;
     }
+
+    .page-break  {
+      display:block;
+      page-break-before:always;
+    }
+
+    .section-content .container div {
+      page-break-inside: avoid;
+    }
+
+    .content br {
+      display: none;
+    }
   </style>
 </head>
+
 <body>
-  <section class="hero is-dark is-bold">
-    <div class="hero-body has-text-centered">
-      <div class="container">
-        <img src={{image}} alt="" width="200" /> <br />
-        <p class="title is-2">
-          {{sender}}
+  <div class="section section-cover">
+    <div class="container">
+      <img src={{senderLogo}} alt="" width="200" /> <br />
+      <p class="title is-1">
+        {{senderCompany}}
+      </p>
+      <p class="subtitle is-5">{{senderSlogan}}</p>
+
+      <hr />
+
+      <h1 class="title">
+        Proposal to {{clientCompany}} ({{clientName}})
+      </h1>
+      <h2 class="subtitle">
+        {{proposalShortDescription}}
+      </h2>
+      <p>Proposal Number: {{proposalNumber}}</p>
+      <p>{{proposalDate}} - {{senderLocation}}</p>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="section section-content">
+    <div class="container">
+
+      <div class="content">
+        <p>Proposal Number: {{proposalNumber}} - {{proposalDate}} - {{senderLocation}}</p> <br />
+        {{{proposalIntroduction}}}
+      </div>
+
+      <hr />
+
+      <div>
+        <h2 class="title is-4 has-text-primary">Scope</h2>
+        <div class="content">{{{projectScope}}}</div>
+      </div>
+
+      <hr />
+
+      <div>
+        <h2 class="title is-4 has-text-primary">Services</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Service/Product</th>
+              <th>Quantity</th>
+              <th>Unity Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each servicesList as |service|}}
+              <tr>
+                <td>{{{service.service}}}</td>
+                <td>{{{service.quantity}}}</td>
+                <td>{{{service.price}}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <div>
+        <h2 class="title is-4 has-text-primary">Aditional Information</h2>
+        <div>{{{aditionalInformation}}}</div>
+      </div>
+
+      <hr />
+
+      <div class="section-signature">
+        <img src={{senderSignature}} alt="" width="100" /> <br />
+        <p class="title is-5">{{senderName}}</p>
+        <p class="subtitle is-6">
+          {{senderSite}}<br />
+          {{senderEmail}}<br />
+          {{senderTel}}<br />
         </p>
-        <p>{{slogan}}</p>
       </div>
-    </div>
-  </section>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          Proposal to  {{clientName}}
-        </h1>
-        <h2 class="subtitle">
-          {{shortDescription}}
-        </h2>
-        <p><strong>Date:</strong> {{proposalDate}} / <strong>Proposal Number:</strong> {{proposalNumber}}</p>
-      </div>
-    </div>
-  </section>
 
-  <hr />
-
-  <div class="container body-container">
-    <h2 class="title is-4">Scope</h2>
-    <div>{{{fullDescription}}}</div>
-
-    <hr />
-
-    <h2 class="title is-4">Services</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Service/Product</th>
-          <th>Quantity</th>
-          <th>Unity Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each servicesList as |service|}}
-          <tr>
-            <td>{{{service.service}}}</td>
-            <td>{{{service.quantity}}}</td>
-            <td>{{{service.price}}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
     </div>
   </div>
 </body>

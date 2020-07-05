@@ -16,9 +16,9 @@
         <h1 class="title">
           PDF Generator
         </h1>
-        <h2 class="subtitle">
+        <p class="subtitle">
           A simple way to create business proposals
-        </h2>
+        </p>
       </div>
     </div>
   </section>
@@ -28,30 +28,44 @@
 
       <form class="form">
 
+        <h2 class="title is-4">General</h2>
+
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label" for="proposalDate">Proposal Date</label>
+            <label class="label" for="proposalDate">Proposal Info</label>
           </div>
           <div class="field-body">
-            <div class="field" style="max-width: 400px">
+            <div class="field">
               <p class="control is-expanded has-icons-left">
-                <input class="input" type="text" placeholder="" id="proposalDate">
+                <input class="input" type="text" placeholder="Proposal Date" id="proposalDate">
                 <span class="icon is-small is-left">
                   <i class="fas fa-calendar-alt"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Proposal Number" id="proposalNumber">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-align-left"></i>
                 </span>
               </p>
             </div>
           </div>
         </div>
 
+        <hr />
+
+        <h2 class="title is-4">From</h2>
+
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label" for="sender">From</label>
+            <label class="label" for="sender">Name</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control is-expanded has-icons-left">
-                <input class="input" type="text" placeholder="Name" id="sender">
+                <input class="input" type="text" placeholder="Name" id="senderName">
                 <span class="icon is-small is-left">
                   <i class="fas fa-user"></i>
                 </span>
@@ -59,7 +73,36 @@
             </div>
             <div class="file">
               <label class="file-label">
-                <input class="file-input" type="file" accept="image/*" name="logo" id="logo">
+                <input class="file-input" type="file" accept="image/*" name="senderLogo" id="senderSignature">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Signature...
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="sender">Company</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Company Name" id="senderCompany">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-store-alt"></i>
+                </span>
+              </p>
+            </div>
+            <div class="file">
+              <label class="file-label">
+                <input class="file-input" type="file" accept="image/*" name="senderLogo" id="senderLogo">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -75,7 +118,75 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label" for="clientName">To</label>
+            <label class="label" for="sender">Slogan</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="" id="senderSlogan">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-align-left"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="sender">Contact</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Telephone" id="senderTel">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-mobile-alt"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Location" id="senderLocation">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-map-marker-alt"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">  
+          <div class="field-label is-normal">
+            <label class="label" for="senderSite">Site</label>
+          </div>        
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="" id="senderSite">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-globe"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Email" id="senderEmail">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </p>
+            </div>
+          </div>        
+        </div>
+
+        <hr />
+
+        <h2 class="title is-4">To</h2>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="clientName">Name</label>
           </div>
           <div class="field-body">
             <div class="field">
@@ -91,12 +202,32 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
+            <label class="label" for="clientName">Company</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="Client Company" id="clientCompany">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-store-alt"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <h2 class="title is-4">Proposal Description</h2>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
             <label class="label" for="shortDescription">Short Description</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control is-expanded has-icons-left">
-                <input class="input" type="text" placeholder="" id="shortDescription">
+                <input class="input" type="text" placeholder="" id="proposalShortDescription">
                 <span class="icon is-small is-left">
                   <i class="fas fa-align-left"></i>
                 </span>
@@ -107,12 +238,24 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label" for="services">Full Description</label>
+            <label class="label" for="proposalIntroduction">Introduction</label>
           </div>
           <div class="field-body">
             <div class="field">
-              <input type="hidden" class="form-control" id="services" />
-              <div id="editor" style="min-height: 150px"></div>
+              <input type="hidden" class="form-control" id="proposalIntroduction" />
+              <div id="editorProposalIntroduction" style="min-height: 150px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal" style="margin-top: 80px">
+          <div class="field-label is-normal">
+            <label class="label" for="projectScope">Project Scope</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <input type="hidden" class="form-control" id="projectScope" />
+              <div id="editorProjectScope" style="min-height: 150px"></div>
             </div>
           </div>
         </div>
@@ -145,6 +288,22 @@
         </div>        
 
         <hr />
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label" for="aditionalInformation">Aditional Information</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <input class="input" type="text" placeholder="" id="aditionalInformation">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-align-left"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
 
         <div class="field is-grouped is-grouped-right">
           <button type="submit" class="button is-primary" data-label="Create PDF">Create PDF</button>
