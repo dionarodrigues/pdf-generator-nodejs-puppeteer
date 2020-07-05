@@ -262,7 +262,19 @@
 
         <hr style="margin-top: 80px" />
 
-        <h1 class="title is-4">Services/Products</h1>
+        <div class="level">
+          <div class="level-left">
+            <h1 class="title is-4">Services/Products</h1>
+          </div>
+          <div class="level-right">
+            <div class="select">
+              <select id="selectServicesType">                
+                <option value="hour" selected>Hour</option>
+                <option value="quantity">Quantity</option>
+              </select>
+            </div>
+          </div>
+        </div>        
 
         <div class="field form-services">
           <div class="field is-horizontal form-services__item">
@@ -274,10 +286,13 @@
                 <input type="text" data-name="service" class="input" id="serviceProduct" placeholder="Description">
               </div>
               <div class="field">
-                <input type="text" data-name="quantity" class="input" id="quantity" placeholder="Quantity">
+                <input type="text" data-name="hours" class="input" id="serviceHours" placeholder="Hours">
               </div>
               <div class="field">
-                <input type="text" data-name="price" class="input" id="unitPrice" placeholder="Unity Price">
+                <input type="text" data-name="price" class="input" id="serviceCostHour" placeholder="Cost per Hour">
+              </div>
+              <div class="field">
+                <input type="text" data-name="total" class="input" id="serviceTotalPrice" placeholder="Total">
               </div>
             </div>
           </div>

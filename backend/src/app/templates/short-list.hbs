@@ -105,19 +105,40 @@
         <h2 class="title is-4 has-text-primary">Services</h2>
         <table class="table">
           <thead>
-            <tr>
-              <th>Service/Product</th>
-              <th>Quantity</th>
-              <th>Unity Price</th>
-            </tr>
+
+            {{#each servicesList}}
+              {{#ifEquals type 'quantity'}}
+                <tr>
+                  <th>Service/Product</th>
+                  <th>Quantity</th>
+                  <th>Unit Price</th>
+                  <th>Total</th>
+                </tr>
+              {{/ifEquals}}
+            {{/each}}
+
+            {{#each servicesList}}
+              {{#ifEquals type 'hour'}}
+                <tr>
+                  <th>Service/Product</th>
+                  <th>Hours</th>
+                  <th>Cost per Hour</th>
+                  <th>Total</th>
+                </tr>
+              {{/ifEquals}}
+            {{/each}}
+
           </thead>
           <tbody>
-            {{#each servicesList as |service|}}
-              <tr>
-                <td>{{{service.service}}}</td>
-                <td>{{{service.quantity}}}</td>
-                <td>{{{service.price}}}</td>
-              </tr>
+            {{#each servicesList}}
+              {{#each data}}
+                <tr>
+                  <td>{{{service}}}</td>
+                  <td>{{{hours}}}</td>
+                  <td>{{{price}}}</td>
+                  <td>{{{total}}}</td>
+                </tr>
+              {{/each}}
             {{/each}}
           </tbody>
         </table>
@@ -138,7 +159,7 @@
   <div class="section section-content">
     <div class="container">
       <div class="section-signature">
-        <img src={{senderSignature}} alt="" width="100" /> <br />
+        <img src={{senderSignature}} alt="" width="200" /> <br />
         <p class="title is-5">{{senderName}}</p>
         <p class="subtitle is-6">
           {{senderSite}}<br />

@@ -3,6 +3,7 @@
   const $formServicesList = document.querySelector('.form-services');
   const $formServicesItem = document.querySelector('.form-services__item');
   const $btnAddService = document.querySelector('.btn-new-service');
+  const $selectServicesType = document.getElementById('selectServicesType');
 
   const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
@@ -135,21 +136,8 @@
     let proposalNumber = document.getElementById('proposalNumber').value;
     let proposalIntroduction = editorProposalIntroduction.root.innerHTML;
     let projectScope = editorProjectScope.root.innerHTML;
-    let servicesList = [];
-    let aditionalInformation = editorAditionalInformation.root.innerHTML;
-
-    const $servicesListEl = document.querySelectorAll('.form-services__item');
-    Array.from($servicesListEl).map(item => {
-      let data = {};
-      const $fields = item.querySelectorAll('.field');
-      Array.from($fields).map(field => { 
-        const $input = field.querySelector('input'); 
-        if($input) {
-          data[$input.dataset.name] = $input.value;
-        }      
-      });
-      servicesList.push(data);
-    });  
+    let servicesList = await makeServiceList();
+    let aditionalInformation = editorAditionalInformation.root.innerHTML;    
 
     createPdf(
       senderLogo,
@@ -171,6 +159,29 @@
       servicesList,
       aditionalInformation,
     );
+  }
+
+  async function makeServiceList() {
+    let servicesList = [];
+    const servicesType = $selectServicesType.value;
+    const $servicesListEl = document.querySelectorAll('.form-services__item');
+
+    servicesList.push({ type: servicesType });    
+    let data= [];
+    Array.from($servicesListEl).map(item => {
+      let row = {};
+      const $fields = item.querySelectorAll('.field');
+      Array.from($fields).map(field => { 
+        const $input = field.querySelector('input'); 
+        if($input) {
+          row[$input.dataset.name] = $input.value;
+        }      
+      });
+      data.push(row);
+    });
+    servicesList.push({data});
+
+    return servicesList;
   }
 
   function handleAddService(e) {
@@ -206,7 +217,21 @@
     }
   }
 
+  function handleSelectServicesType(e) {
+    const targetValue = e.target.value;
+    if(targetValue === 'hour') {
+      document.getElementById('serviceHours').setAttribute('placeholder', 'Hours');
+      document.getElementById('serviceCostHour').setAttribute('placeholder', 'Cost per Hour');
+    }  
+    if(targetValue === 'quantity') {
+      document.getElementById('serviceHours').setAttribute('placeholder', 'Quantity');
+      document.getElementById('serviceCostHour').setAttribute('placeholder', 'Unity Price');
+    }  
+  }
+
   $form.addEventListener('submit', handleSubmit);
   $btnAddService.addEventListener('click', handleAddService);
   $formServicesList.addEventListener('click', handleRemoveService);
+  $selectServicesType.addEventListener('change', handleSelectServicesType)
 })(window, document);
+
