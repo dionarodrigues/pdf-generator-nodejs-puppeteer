@@ -1,6 +1,6 @@
 # PDF Generator for business proposals using Node.JS with Puppeteer and HTML
 
-👌 A complete application to create PDF files from a HTML form using Node.JS with with Typescript. 
+👌 A complete application to create PDF files from a HTML form using Node.JS with Typescript. 
 
 Check the [PDF demo here](https://github.com/diogorodrigues/pdf-generator-nodejs-puppeteer/blob/master/demo/john-stone-2401872e-c906-41e7-99e3-965feadad3ed.pdf).
 
